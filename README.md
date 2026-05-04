@@ -22,6 +22,12 @@
 
 ---
 
+> **Self-host the Backend API for best performance!**
+>
+> The default API (`upstocks-api.onrender.com`) runs on Render's free tier and spins down after inactivity, causing slow cold starts. For reliable usage, self-host the API: **[Upstocks-API](https://github.com/uditya-kumar/Upstocks-API)**
+
+---
+
 ## Overview
 
 A conversational AI agent that analyzes Indian mutual funds using natural language. Ask questions like *"Analyse Parag Parikh Flexi Cap fund"* and get detailed insights including NAV history, category comparisons, and performance metrics.
