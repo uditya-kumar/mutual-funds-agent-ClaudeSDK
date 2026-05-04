@@ -159,6 +159,8 @@ The agent connects to a mutual funds API with the following endpoints:
 | `/api/mutual-fund/:id/nav-history` | GET | Get NAV history |
 | `/api/mutual-fund/:id/category-returns` | GET | Get category returns |
 
+> **Backend API**: The backend API for this project is available at [Upstocks-API](https://github.com/uditya-kumar/Upstocks-API.git)
+
 ## License
 
 MIT
