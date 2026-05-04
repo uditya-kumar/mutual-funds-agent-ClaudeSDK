@@ -28,36 +28,14 @@ A conversational AI agent that analyzes Indian mutual funds using natural langua
 
 ## Tech Stack
 
-<table>
-  <tr>
-    <th>Technology</th>
-    <th>Purpose</th>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/anthropic/191919" width="16" height="16" /> Claude Agent SDK</td>
-    <td>AI agent framework with tool orchestration</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/typescript/3178C6" width="16" height="16" /> TypeScript</td>
-    <td>Type-safe development</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/nodedotjs/339933" width="16" height="16" /> Node.js</td>
-    <td>Runtime environment</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/amazonaws/FF9900" width="16" height="16" /> Amazon Bedrock</td>
-    <td>Claude model provider</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/axios/5A29E4" width="16" height="16" /> Axios</td>
-    <td>HTTP client for API calls</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.simpleicons.org/zod/3E67B1" width="16" height="16" /> Zod</td>
-    <td>Schema validation for MCP tools</td>
-  </tr>
-</table>
+| Technology | Purpose |
+|------------|---------|
+| Claude Agent SDK | AI agent framework with tool orchestration |
+| TypeScript | Type-safe development |
+| Node.js | Runtime environment |
+| Amazon Bedrock | Claude model provider |
+| Axios | HTTP client for API calls |
+| Zod | Schema validation for MCP tools |
 
 ## Features
 
