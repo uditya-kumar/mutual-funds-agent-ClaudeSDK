@@ -90,25 +90,61 @@ npm install
 
 ## Configuration
 
-Create a `.env` file in the root directory:
+Copy `.env.example` to `.env` and configure your authentication:
+
+```bash
+cp .env.example .env
+```
+
+### Authentication Options
+
+Choose **one** of the following authentication methods:
+
+<details>
+<summary><strong>Option 1: Anthropic API (Recommended)</strong></summary>
+
+The simplest option for personal use. Get an API key from [Anthropic Console](https://console.anthropic.com/).
 
 ```env
-# Amazon Bedrock Configuration
+ANTHROPIC_API_KEY=your_anthropic_api_key
+API_BASE_URL=https://upstocks-api.onrender.com
+```
+
+</details>
+
+<details>
+<summary><strong>Option 2: Amazon Bedrock</strong></summary>
+
+For AWS users with Bedrock access.
+
+```env
 CLAUDE_CODE_USE_BEDROCK=1
 AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=us-east-1
-ANTHROPIC_MODEL=global.anthropic.claude-opus-4-5-20251101-v1:0
-
-# API Configuration
-API_BASE_URL=https://your-api-endpoint.com
+API_BASE_URL=https://upstocks-api.onrender.com
 ```
 
-### AWS Bedrock Setup
-
-1. Enable Anthropic models in your AWS account via [Amazon Bedrock Console](https://console.aws.amazon.com/bedrock)
+**Setup steps:**
+1. Enable Anthropic models in [Amazon Bedrock Console](https://console.aws.amazon.com/bedrock)
 2. Configure IAM permissions for `bedrock:InvokeModel` and `bedrock:InvokeModelWithResponseStream`
-3. Set the environment variables above
+
+</details>
+
+<details>
+<summary><strong>Option 3: Google Vertex AI</strong></summary>
+
+For Google Cloud users.
+
+```env
+CLAUDE_CODE_USE_VERTEX=1
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+ANTHROPIC_VERTEX_PROJECT_ID=your_project_id
+CLOUD_ML_REGION=us-east5
+API_BASE_URL=https://upstocks-api.onrender.com
+```
+
+</details>
 
 ## Usage
 
@@ -139,13 +175,24 @@ Total cost: $0.0234 (Input: 1250 tokens, Output: 890 tokens)
 
 ## Environment Variables
 
+### Authentication (Choose one)
+
+| Variable | Provider | Description |
+|----------|----------|-------------|
+| `ANTHROPIC_API_KEY` | Anthropic API | API key from [console.anthropic.com](https://console.anthropic.com/) |
+| `CLAUDE_CODE_USE_BEDROCK` | AWS Bedrock | Set to `1` to enable Bedrock |
+| `AWS_ACCESS_KEY_ID` | AWS Bedrock | AWS access key |
+| `AWS_SECRET_ACCESS_KEY` | AWS Bedrock | AWS secret key |
+| `AWS_REGION` | AWS Bedrock | AWS region (e.g., `us-east-1`) |
+| `CLAUDE_CODE_USE_VERTEX` | Google Vertex | Set to `1` to enable Vertex AI |
+| `ANTHROPIC_VERTEX_PROJECT_ID` | Google Vertex | GCP project ID |
+| `CLOUD_ML_REGION` | Google Vertex | GCP region (e.g., `us-east5`) |
+
+### Other Configuration
+
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `CLAUDE_CODE_USE_BEDROCK` | Yes | Set to `1` to enable Bedrock |
-| `AWS_ACCESS_KEY_ID` | Yes | AWS access key |
-| `AWS_SECRET_ACCESS_KEY` | Yes | AWS secret key |
-| `AWS_REGION` | Yes | AWS region (e.g., `us-east-1`) |
-| `ANTHROPIC_MODEL` | No | Model override |
+| `ANTHROPIC_MODEL` | No | Model override (e.g., `claude-sonnet-4-5-20250514`) |
 | `API_BASE_URL` | Yes | Mutual funds API endpoint |
 
 ## API Reference
