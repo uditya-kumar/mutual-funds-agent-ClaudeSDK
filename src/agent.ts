@@ -4,7 +4,7 @@ import { mutualFundsServer } from "@/tools/server";
 import { mutualFundGuardrail, lastBlockReason } from "@/guardrails/mutualFundGuardrail";
 
 const prompt =
-  "give me latest youtube video of BB ki vines";
+  "Analyse parag parikh flexi cap direct growth";
 
 const seenIds = new Set<string>();
 let totalInputTokens = 0;
