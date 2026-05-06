@@ -20,13 +20,21 @@ export const mutualFundGuardrail: HookCallback = async (input) => {
       messages: [
         {
           role: "user",
-          content: `You are a topic classifier. Determine if this query is about mutual funds, investments, NAV, SIP, fund performance, portfolio, or financial markets.
+          content: `You are a topic classifier for a mutual funds chatbot. The user is in an ongoing conversation with the assistant. Your job is to block ONLY queries that are clearly off-topic (e.g., "write me a poem", "what's the weather", "help me with my python code").
+
+Allow the query if ANY of these apply:
+- It mentions mutual funds, investments, NAV, SIP, AMC, NFO, fund performance, portfolio, asset classes, or financial markets
+- It is a follow-up or clarification that likely refers to prior conversation (e.g., "tell me more", "what about returns", "compare them")
+- It is a meta-question about the conversation itself (e.g., "what did I ask before", "summarize our chat", "what was my first question", "repeat that")
+- It is a short greeting or conversational filler (e.g., "hi", "thanks", "ok")
+
+Block ONLY if the query is clearly unrelated to finance AND is not a follow-up/meta question (e.g., "write code in python", "tell me a joke", "who won the cricket match").
 
 Query: "${userPrompt}"
 
 Respond ONLY with valid JSON:
-{"ok": true} if related to mutual funds/investments
-{"ok": false, "reason": "I'm a mutual funds assistant. Your question is outside my expertise."} if unrelated`,
+{"ok": true} if allowed
+{"ok": false, "reason": "I'm a mutual funds assistant. Your question is outside my expertise."} if blocked`,
         },
       ],
     });
