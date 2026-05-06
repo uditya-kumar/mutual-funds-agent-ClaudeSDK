@@ -16,7 +16,7 @@ npm install
 
 This is a Claude Agent SDK application that analyzes Indian mutual funds via natural language queries.
 
-**Entry point**: `src/agent.ts` - Uses `query()` from the SDK to run the agent with an MCP server and input guardrail.
+**Entry point**: `src/agent.ts` - Interactive REPL loop. Reads user input via `readline/promises`, calls `query()` per turn, and maintains a single multi-turn session. Session continuity is achieved by capturing `session_id` from the `init` system message on the first turn and passing `resume: sessionId` on subsequent turns. Token counts and cost accumulate across the whole session. Type `exit` to quit.
 
 **MCP Server** (`src/tools/server.ts`): Creates an in-process MCP server using `createSdkMcpServer()` with four tools:
 - `search_mutual_funds` - Search funds by name/keyword
@@ -26,7 +26,7 @@ This is a Claude Agent SDK application that analyzes Indian mutual funds via nat
 
 Each tool implementation is in `src/tools/` and makes HTTP calls to the external API (`API_BASE_URL` env var).
 
-**Guardrail** (`src/guardrails/mutualFundGuardrail.ts`): Input guardrail using Haiku to filter non-investment queries. Runs on `UserPromptSubmit` hook. Uses Bedrock SDK directly for the classification call.
+**Guardrail** (`src/guardrails/mutualFundGuardrail.ts`): Input guardrail using Haiku to filter clearly off-topic queries. Runs on `UserPromptSubmit` hook and uses the Bedrock SDK directly for classification. The classifier prompt is intentionally permissive — it allows follow-ups, meta-questions about the conversation, and conversational fillers so mid-chat turns aren't falsely blocked. When a query is blocked, `lastBlockReason` is set and `agent.ts` prints it instead of the model result.
 
 **Path alias**: `@/*` maps to `./src/*` (configured in tsconfig.json).
 
